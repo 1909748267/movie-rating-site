@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, users, movies, ratings, comments, stats
+from app.api import auth, users, movies, ratings, comments, stats, crawler
 
 app = FastAPI(title="电影评分网站API", version="1.0.0")
 
@@ -18,6 +18,7 @@ app.include_router(movies.router)
 app.include_router(ratings.router)
 app.include_router(comments.router)
 app.include_router(stats.router)
+app.include_router(crawler.router)
 
 
 @app.get("/")
