@@ -1,6 +1,7 @@
 import bcrypt
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
+from typing import Optional
 from app.config import settings
 
 
@@ -25,7 +26,7 @@ def create_token(data: dict) -> str:
     return encoded_jwt
 
 
-def verify_token(token: str) -> dict | None:
+def verify_token(token: str) -> Optional[dict]:
     try:
         payload = jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
         return payload

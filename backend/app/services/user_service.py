@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.models.user import User
 from app.schemas.user import PasswordUpdate
 from app.utils.auth import hash_password, verify_password
@@ -6,7 +7,7 @@ from app.utils.auth import hash_password, verify_password
 
 class UserService:
     @staticmethod
-    def get_user_by_id(db: Session, user_id: int) -> User | None:
+    def get_user_by_id(db: Session, user_id: int) -> Optional[User]:
         return db.query(User).filter(User.id == user_id).first()
 
     @staticmethod

@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.models.rating import Rating
 from app.schemas.rating import RatingCreate
 
@@ -43,7 +44,7 @@ class RatingService:
         return rating
 
     @staticmethod
-    def get_user_rating(db: Session, user_id: int, movie_id: int) -> Rating | None:
+    def get_user_rating(db: Session, user_id: int, movie_id: int) -> Optional[Rating]:
         return db.query(Rating).filter(
             Rating.user_id == user_id,
             Rating.movie_id == movie_id
